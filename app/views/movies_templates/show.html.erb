@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Must See Movies - <%= @movie.title %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      |
+      <a href="/movies">Back to All Movies</a>
+    </nav>
+
+    <h1><%= @movie.title %></h1>
+
+    <hr>
+
+    <p><strong>Year:</strong> <%= @movie.year %></p>
+    <p><strong>Duration:</strong> <%= @movie.duration %> minutes</p>
+    <p><strong>Description:</strong> <%= @movie.description %></p>
+
+    <p><strong>Director:</strong> 
+      <% if @movie.director.present? %>
+        <a href="/directors/<%= @movie.director.id %>"><%= @movie.director.name %></a>
+      <% else %>
+        Unknown
+      <% end %>
+    </p>
+
+    <% if @movie.image.present? %>
+      <img src="<%= @movie.image %>" alt="<%= @movie.title %>" style="width:300px;">
+    <% else %>
+      <p>No Image Available</p>
+    <% end %>
+  </body>
+</html>

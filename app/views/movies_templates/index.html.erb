@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Must See Movies - All Movies</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+
+    <h1>List of All Movies</h1>
+
+    <hr>
+
+    <table border="1">
+      <tr>
+        <th>Title</th>
+        <th>Year</th>
+        <th>Duration</th>
+        <th>Director</th>
+        <th></th>
+      </tr>
+
+      <% @movies.each do |movie| %>
+        <tr>
+          <td><%= movie.title %></td>
+          <td><%= movie.year %></td>
+          <td><%= movie.duration %> mins</td>
+          <td><%= movie.director.name if movie.director.present? %></td>
+          <td>
+            <a href="/movies/<%= movie.id %>">Show details</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>
