@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Must See Movies - All Actors</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+
+    <h1>List of All Actors</h1>
+
+    <hr>
+
+    <table border="1">
+      <tr>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Date of Birth</th>
+        <th></th>
+      </tr>
+
+      <% @actors.each do |actor| %>
+        <tr>
+          <td>
+            <% if actor.image.present? %>
+              <img src="<%= actor.image %>" style="width:100px;">
+            <% else %>
+              No Image Available
+            <% end %>
+          </td>
+          <td><%= actor.name %></td>
+          <td>
+            <% if actor.dob.present? %>
+              <%= actor.dob.strftime("%B %d, %Y") %>
+            <% else %>
+              Unknown
+            <% end %>
+          </td>
+          <td>
+            <a href="/actors/<%= actor.id %>">Show details</a>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </body>
+</html>

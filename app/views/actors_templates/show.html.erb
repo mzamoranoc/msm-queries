@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Must See Movies - <%= @actor.name %></title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+
+  <body>
+
+    <h1><%= @actor.name %></h1>
+
+    <hr>
+
+    <p><strong>Date of Birth:</strong> 
+      <% if @actor.dob.present? %>
+        <%= @actor.dob.strftime("%B %d, %Y") %>
+      <% else %>
+        Unknown
+      <% end %>
+    </p>
+
+    <p><strong>Biography:</strong> <%= @actor.bio %></p>
+
+    <% if @actor.image.present? %>
+      <img src="<%= @actor.image %>" alt="<%= @actor.name %>" style="width:300px;">
+    <% else %>
+      <p>No Image Available</p>
+    <% end %>
+
+    <h2>Filmography</h2>
+
+    <ul>
+      <% @actor.characters.each do |character| %>
+        <% if character.movie.present? %>
+          <li>
+            <a href="/movies/<%= character.movie.id %>">
+              <%= character.movie.title %> (<%= character.movie.year %>)
+            </a> - <strong>Character:</strong> <%= character.name %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+  </body>
+</html>
